@@ -9,5 +9,11 @@ https://www.figma.com/team_invite/redeem/uw6Vj7wlOWbjUTFblXJENC
 Class diagram link:
 https://drive.google.com/file/d/1n8t6Fk2SGsVJp0R0WjdMzrhCS55_Z7fd/view?usp=sharing
 
+Our emails:
+sebastianchasmarino@gmail.com
+teciorowski.anthony3@gmail.com
+DillonjRego17@gmail.com
+luisangel.e10@gmail.com
+
 Install Userfront
 npm install @userfront/react --save
