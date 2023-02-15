@@ -14,7 +14,9 @@ https://airbnb.io/javascript/react/
 
 Links for setting up IDE plugins:
 1.) follow the instructions here to install ESlint https://eslint.org/
+
 2.) install Prettier on top of ESlint: https://gist.github.com/bklingen-calpoly/4ed88b4093a5bcfa4be93a9ee0d8a31e
+
 3.) add the format command to package.json: https://gist.github.com/bklingen-calpoly/c80cac4a012357dbb2751d22a428fd92  
 
 Our emails:
