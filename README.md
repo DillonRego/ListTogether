@@ -13,7 +13,7 @@ Style guide:
 https://airbnb.io/javascript/react/
 
 Links for setting up IDE plugins:
-1. ESLinst: adding jest to env section to avoid Jest errors: https://gist.github.com/bklingen-calpoly/5cb27a78243665e697cde12781f0e8b5
+1. ESLint: adding jest to env section to avoid Jest errors: https://gist.github.com/bklingen-calpoly/5cb27a78243665e697cde12781f0e8b5
 
 2. ESLint: adding rules to avoid some React errors: https://gist.github.com/bklingen-calpoly/463786ad61d05755c9c69e3cfbc7c73e
 
