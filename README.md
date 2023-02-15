@@ -13,13 +13,9 @@ Style guide:
 https://airbnb.io/javascript/react/
 
 Links for setting up IDE plugins:
-1. ESLint: adding jest to env section to avoid Jest errors: https://gist.github.com/bklingen-calpoly/5cb27a78243665e697cde12781f0e8b5
-
-2. ESLint: adding rules to avoid some React errors: https://gist.github.com/bklingen-calpoly/463786ad61d05755c9c69e3cfbc7c73e
-
-3. Prettier: adding prettier on to ESLint: https://gist.github.com/bklingen-calpoly/4ed88b4093a5bcfa4be93a9ee0d8a31e  
-
-4. Prettier: adding the format command to package.json: https://gist.github.com/bklingen-calpoly/c80cac4a012357dbb2751d22a428fd92  
+1.) follow the instructions here to install ESlint https://eslint.org/
+2.) install Prettier on top of ESlint: https://gist.github.com/bklingen-calpoly/4ed88b4093a5bcfa4be93a9ee0d8a31e
+3.) add the format command to package.json: https://gist.github.com/bklingen-calpoly/c80cac4a012357dbb2751d22a428fd92  
 
 Our emails:
 sebastianchasmarino@gmail.com
