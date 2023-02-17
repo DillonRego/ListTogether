@@ -32,11 +32,9 @@ Userfront.init("vnd78z9b");
           </ul>
         </nav>
         <Routes>
-          <Route
-            path="/login"
-            element={<LoginForm/>}
-          />
+          <Route path="/login" element={<LoginForm/>}/>
           <Route path="/signup" element={<SignupForm/>}/>
+          <Route path="/dashboard" element={"Nothing here"}/>
         </Routes>
       </BrowserRouter>
     </div>
