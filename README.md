@@ -34,7 +34,7 @@ npm install @userfront/react --save
 2. Create .env local file following the format:
 
 Update the fields below with your mongodb atlas info
-`MONGO_USER=replace_with_your_mongodb_atlas_user`
-`MONGO_PWD=replace_with_your__mongodb_atlas_password`
-`MONGO_DB=replace_with_your_mongodb_db`
-`MONGO_CLUSTER=replace_with_your_mongodb_atlas_cluster`
+- `MONGO_USER=replace_with_your_mongodb_atlas_user`
+- `MONGO_PWD=replace_with_your__mongodb_atlas_password`
+- `MONGO_DB=replace_with_your_mongodb_db`
+- `MONGO_CLUSTER=replace_with_your_mongodb_atlas_cluster`
