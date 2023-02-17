@@ -29,7 +29,7 @@ luisangel.e10@gmail.com
 Install Userfront
 npm install @userfront/react --save
 
-# Backend linking with Mongodb
+# Backend linking with MongoDB
 1. npm install dotenv
 2. Create .env local file following the format:
 
