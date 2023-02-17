@@ -35,6 +35,7 @@ Userfront.init("vnd78z9b");
           <Route path="/login" element={<LoginForm/>}/>
           <Route path="/signup" element={<SignupForm/>}/>
           <Route path="/dashboard" element={"Nothing here"}/>
+          <Route path="/logout" element={"Nothing here"}/>
         </Routes>
       </BrowserRouter>
     </div>
