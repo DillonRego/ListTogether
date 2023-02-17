@@ -1,0 +1,28 @@
+{
+  "name": "listtogether",
+  "version": "1.0.0",
+  "description": "For busy individuals with friends or no friends, who want to keep track of their daily lives.\r Our Product will be flexible to the users needs and value creativity above all else.",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon backend.js",
+    "start": "node backend.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DillonRego/ListTogether.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DillonRego/ListTogether/issues"
+  },
+  "homepage": "https://github.com/DillonRego/ListTogether#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
