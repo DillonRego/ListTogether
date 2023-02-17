@@ -1,7 +1,6 @@
 import './App.css';
 import './index.css'
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Userfront from "@userfront/react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
