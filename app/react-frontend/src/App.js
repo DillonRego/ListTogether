@@ -3,9 +3,7 @@ import './index.css'
 import React from 'react'
 import Userfront from "@userfront/react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Task from './task';
-import axios from 'axios';
-
+import NewForm from './newForm';
 
 function App() {
 
@@ -48,7 +46,7 @@ Userfront.init("vnd78z9b");
           <Route path="/signup" element={<SignupForm/>}/>
           <Route path="/dashboard" element={"Nothing here"}/>
           <Route path="/logout" element={"Nothing here"}/>
-          <Route path="/newform" element={<Task/>}/>
+          <Route path="/newform" element={<NewForm/>}/>
         </Routes>
       </BrowserRouter>
     </div>
