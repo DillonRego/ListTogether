@@ -1,88 +1,75 @@
-const express = require('express');
-const app = express();
-const port = 5001;
-const cors = require('cors');
-const tasks = { 
-    task_list :[]
- }
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
-app.use(express.json());
+// Add mongdb user services
+const taskServices = require("./models/Task-services");
+
+const app = express();
+const port = 5000;
+// const tasks = {
+//     task_list: []
+// }
+
 app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/tasks', (req, res) => {
+app.get('/tasks', async (req, res) => {
     // return all tasks
-    res.send(tasks);
-
+    try {
+        const tasks_from_db = await taskServices.getTasks();
+        res.send({ tasks_list: tasks_from_db });
+    } catch (error) {
+        console.log("Mongoose error: " + error);
+        res.status(500).send("An error ocurred in the server.");
+    }
 });
 
-app.get('/tasks/:id', (req, res) => {
-    const id = req.params['id']; //or req.params.id
-    let result = findTaskByid(id);
-    if (result === undefined || result.length == 0)
-        res.status(404).send('Resource not found.');
+app.get("/tasks/:id", async (req, res) => {
+    const id = req.params["id"]; //or req.params.id
+    let result = await taskServices.findTaskById(id);
+    if (result === undefined || result === null)
+        res.status(404).send("Resource not found.");
     else {
-        result = {users_list: result};
+        result = { tasks_list: result };
         res.send(result);
     }
 });
 
-
-app.post('/tasks', (req, res) => {
+app.post("/tasks", async (req, res) => {
     console.log("received post request")
-    const taskToAdd = req.body;
-    taskToAdd['id'] = generateId();
-    addUser(taskToAdd);
-    console.log(tasks);
-    res.status(201).send(taskToAdd).end();
+    const task = req.body;
+    if (await taskServices.addTask(task))
+        res.status(201).send(task).end();
+    else 
+        res.status(500).end();
 });
 
-app.delete('/tasks/:id', (req, res) => {
+app.delete("/tasks/:id", async (req, res) => {
     console.log("received delete request");
-    const id = req.params['id']; 
+    const id = req.params["id"];
     console.log(id);
-    console.log(tasks)
-    let result = findTaskByid(id);
-    if (result === undefined || result.length == 0)
-        res.status(404).send('Resource not found.');
-    else {
-        deleteTask(id);
+    if (deleteTaskById(id))
         res.status(204).end();
-    }
+    else
+        res.status(404).send("Resource not found.");
 });
 
-function deleteTask(id){
-    tasks['task_list'] = tasks['task_list'].filter( (task) => task['id'] !== id);
-}
-
-function addUser(task){
-    tasks['task_list'].push(task);
-}
-
-function findTaskByid(id) {
-    return tasks['task_list'].filter( (task) => task['id'] === id);
-}
-
-function generateId() {
-    let id = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const numbers = '0123456789';
-    for (let i = 0; i < 3; i++) {
-        id += characters.charAt(Math.floor(Math.random() * characters.length));
+async function deleteTaskById(id) {
+    try {
+        if (await taskServices.deleteTask(id)) return true;
+    } catch (error) {
+        console.log(error);
+        return false;
     }
-    for (let i = 0; i < 3; i++) {
-        id += numbers.charAt(Math.floor(Math.random() * numbers.length));
-    }
-    return id;
 }
 
-const findTaskByName = (name) => { 
-    return tasks['task_list'].filter( (task) => task['task'] === name); 
-}
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});  
+app.listen(process.env.PORT || port, () => {
+    if (process.env.PORT) {
+        console.log(`REST API is listening on port: ${process.env.PORT}.`);
+    } else console.log(`REST API is listening on port: ${port}.`);
+}); 

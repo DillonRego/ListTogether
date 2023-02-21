@@ -1,15 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import Form from './form';
+import Form from './Form';
 import DataEntry from './dataEntry';
 import axios from 'axios';
 
 function NewForm() {
     const [tasks, setTasks] = useState([]);
 
+    useEffect(() => {
+        fetchAll().then( result => {
+           if (result)
+            setTasks(result);
+         });
+    }, []);
+
     async function fetchAll(){
         try {
-           const response = await axios.get('http://localhost:5001/tasks');
-           return response.data.task_list;     
+           const response = await axios.get('http://localhost:5000/tasks');
+           return response.data.tasks_list;     
         }
         catch (error){
            //We're not handling errors. Just logging into the console.
@@ -20,7 +27,7 @@ function NewForm() {
 
     async function makePostCall(task){
         try {
-           const response = await axios.post('http://localhost:5001/tasks', task);
+           const response = await axios.post('http://localhost:5000/tasks', task);
            return response;
         }
         catch (error) {
@@ -29,12 +36,11 @@ function NewForm() {
         }
     }
 
-    async function makeDeleteCall(task){
-        console.log("makeDeleteCall: " + task['id']);
+    async function makeDeleteCall(id){
+        console.log("makeDeleteCall: " + id);
         try {
-           const taskId = task['id'];
            console.log("Sending request");
-           const response = await axios.delete('http://localhost:5001/tasks/' + taskId, task);
+           const response = await axios.delete('http://localhost:5000/tasks/' + id);
            return response;
         }
         catch (error) {
@@ -43,14 +49,14 @@ function NewForm() {
         }
     }
 
-    function removeOneTask (index) {
-        console.log("removing one task")
-        makeDeleteCall(tasks[index]).then( result => {
-            if (result && result.status === 204){
-                setTasks(tasks.filter((task, i) => {
-                    return i !== index
-                }));
-            }
+    function removeOneTask(index) {
+        const updated = tasks.filter((task, i) => {
+          return i !== index
+        });
+
+        makeDeleteCall(tasks.at(index)._id).then( result => {
+          if (result && result.status === 204)
+          setTasks(updated);
         });
     }
 
@@ -60,13 +66,6 @@ function NewForm() {
             setTasks([...tasks, result.data] );
         });
     }
-
-    useEffect(() => {
-        fetchAll().then( result => {
-           if (result)
-            setTasks(result);
-         });
-    }, [] );
 
     return (
         <div className="container">
