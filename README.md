@@ -33,6 +33,9 @@ luisangel.e10@gmail.com
 - npm install install @userfront/react --save
 
 # Backend linking with MongoDB
+1. cd to app/backend dirrectory
+2. npm install express
+2. npm install --save-dev nodemon 
 1. npm install dotenv
 2. Create .env local file following the format:
 
