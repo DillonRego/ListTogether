@@ -1,16 +1,16 @@
 import React from 'react'
 
-function TableHeader()  {
+function FormHeader()  {
     return (
       <thead>
         <tr>
-          <th>Task</th>
+          <th><textarea type="text" placeholder="Enter List Name" class="table-title"/></th>
         </tr>
       </thead>
     );
 }
 
-function TableBody(props) {
+function FormBody(props) {
     const rows = props.taskData.map((row, index) => {
       return (
         <tr key={index}>
@@ -30,14 +30,15 @@ function TableBody(props) {
   }
   
   
-  function Table (props) {
+  function Form(props) {
+    console.log(props.taskData)
     return (
       <table>
-        <TableHeader />
-        <TableBody taskData={props.taskData} removeTask={props.removeTask} />
+        <FormHeader />
+        <FormBody taskData={props.taskData} removeTask={props.removeTask} />
       </table>
     );
   }
  
 
-export default Table;
+export default Form;
