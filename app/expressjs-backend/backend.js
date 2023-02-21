@@ -24,27 +24,26 @@ app.get('/tasks', async (req, res) => {
         const tasks_from_db = await taskServices.getTasks();
         res.send({ tasks_list: tasks_from_db });
     } catch (error) {
-        console.log("Mongoose error: " + error);
-        res.status(500).send("An error ocurred in the server.");
+        console.log('Mongoose error: ' + error);
+        res.status(500).send('An error ocurred in the server.');
     }
 });
 
-app.get("/tasks/:id", async (req, res) => {
-    const id = req.params["id"]; //or req.params.id
+app.get('/tasks/:id', async (req, res) => {
+    const id = req.params['id']; //or req.params.id
     let result = await taskServices.findTaskById(id);
     if (result === undefined || result === null)
-        res.status(404).send("Resource not found.");
-    else {
-        result = { tasks_list: result };
-        res.send(result);
-    }
+        res.status(404).send('Resource not found.');
+    else
+        res.send({ tasks_list: result });
 });
 
 app.post("/tasks", async (req, res) => {
     console.log("received post request")
     const task = req.body;
-    if (await taskServices.addTask(task))
-        res.status(201).send(task).end();
+    const savedTask = await taskServices.addTask(task);
+    if (savedTask)
+        res.status(201).send(savedTask);
     else 
         res.status(500).end();
 });
