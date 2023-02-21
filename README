@@ -1,4 +1,0 @@
-cd to the app directory first
-npm install
-npm install react-router-dom --save
-npm install install @userfront/react --save

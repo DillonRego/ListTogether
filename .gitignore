@@ -7,6 +7,7 @@ README.md
 /app/.pnp
 /app.pnp.js
 
+/app/src/node_modules
 # testing
 /app/coverage
 
