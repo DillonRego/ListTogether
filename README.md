@@ -26,8 +26,11 @@ teciorowski.anthony3@gmail.com
 DillonjRego17@gmail.com
 luisangel.e10@gmail.com
 
-Install Userfront
-npm install @userfront/react --save
+# Install frontend/Userfront
+cd to the app directory first
+npm install
+npm install react-router-dom --save
+npm install install @userfront/react --save
 
 # Backend linking with MongoDB
 1. npm install dotenv
