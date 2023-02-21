@@ -24,3 +24,6 @@ README.md
 /app/npm-debug.log*
 /app/yarn-debug.log*
 /app/yarn-error.log*
+
+#env
+.env
