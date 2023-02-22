@@ -27,7 +27,7 @@ DillonjRego17@gmail.com
 luisangel.e10@gmail.com
 
 # Install frontend/Userfront
-- cd to the app directory first
+- cd to the app/frontend directory first
 - npm install
 - npm install react-router-dom --save
 - npm install install @userfront/react --save
