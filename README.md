@@ -44,4 +44,4 @@ Update the fields below with your mongoDB atlas info
 - `MONGO_PWD=replace_with_your__mongodb_atlas_password`
 - `MONGO_DB=replace_with_your_mongodb_db`
 - `MONGO_CLUSTER=replace_with_your_mongodb_atlas_cluster`
-- 'PORT=5000'
+- `PORT=5000`
