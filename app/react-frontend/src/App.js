@@ -2,7 +2,7 @@ import './App.css';
 import './index.css'
 import React from 'react'
 import Userfront from "@userfront/react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import NewForm from './newForm';
 
 function App() {
@@ -34,7 +34,7 @@ Userfront.init("vnd78z9b");
               <Link to="/dashboard">dashboard</Link>
             </li>
             <li>
-              <Link to="/logout">logout</Link>
+              <Link to="/profile">profile</Link>
             </li>
             <li>
               <Link to="/newform">newform</Link>
@@ -44,13 +44,46 @@ Userfront.init("vnd78z9b");
         <Routes>
           <Route path="/login" element={<LoginForm/>}/>
           <Route path="/signup" element={<SignupForm/>}/>
-          <Route path="/dashboard" element={"Nothing here"}/>
-          <Route path="/logout" element={"Nothing here"}/>
-          <Route path="/newform" element={<NewForm/>}/>
+          <Route path="/dashboard" element={
+              <RequireAuth>
+                <h1>Dashboard</h1>
+              </RequireAuth>
+            }/>
+            <Route path="/profile" element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }/>
+          <Route path="/newform" element={
+              <RequireAuth>
+                <NewForm />
+              </RequireAuth>
+            }/>
         </Routes>
       </BrowserRouter>
     </div>
   );
+}
+
+function Profile() {
+  const userData = JSON.stringify(Userfront.user, null, 2);
+
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <pre>{userData}</pre>
+      <button onClick={Userfront.logout}>Logout</button>
+    </div>
+  );
+}
+
+function RequireAuth({ children }) {
+  let location = useLocation();
+  if (!Userfront.tokens.accessToken) {
+    // Redirect to the /login page
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  return children;
 }
 //ReactDOM.render(<App />, document.getElementById('root'))
 export default App;
