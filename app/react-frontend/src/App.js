@@ -66,13 +66,21 @@ Userfront.init("vnd78z9b");
 }
 
 function Profile() {
-  const userData = JSON.stringify(Userfront.user, null, 2);
+  const userData = Userfront.user;
 
   return (
-    <div>
-      <h2>Dashboard</h2>
-      <pre>{userData}</pre>
-      <button onClick={Userfront.logout}>Logout</button>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
+        <img
+            src={userData.image}
+            alt="User profile"
+            style={{ maxWidth: '100%', marginBottom: '16px' }}
+          />
+        <h2>{userData.name}</h2>
+        <p>@{userData.username}</p>
+        <p>{userData.email}</p>
+        <button onClick={Userfront.logout}>Logout</button>
+      </div>
     </div>
   );
 }
