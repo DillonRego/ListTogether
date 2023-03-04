@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-//import Library from './Library';
+import { useNavigate  } from "react-router-dom";
 import DataEntry from './dataEntry';
 import axios from 'axios';
 
 function NewForm() {
+  const history = useNavigate();
   const [library, setLibrary] = useState([]);
 
   useEffect(() => {
@@ -40,7 +41,8 @@ function NewForm() {
         setLibrary([...library, result.data]);
       }
     });
-    window.location.href = '/dashboard';
+    history('/dashboard');
+    //window.location.href = '/dashboard';
   }
 
   return (
