@@ -1,36 +1,56 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 function DataEntry(props) {
-  const [tasks, setTasks] = useState(
-     {
-        id: "",
-        task: "",
-     }
-  );
+  const [formData, setFormData] = useState({
+    title: '',
+    items: ['']
+  });
 
-  /* write  a function that will handle the change event */
-    const handleChange = (e) => {
-        setTasks({task: e.target.value});
-    }
+  const handleTitleChange = (event) => {
+    setFormData({ ...formData, title: event.target.value });
+  };
 
-  /* write a submit function that will handle the submit event */
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        props.handleSubmit(tasks);
-        setTasks({task: ""});
-        console.log(tasks);
-    }
+  const handleItemChange = (index, event) => {
+    const newItems = [...formData.items];
+    newItems[index] = event.target.value;
+    setFormData({ ...formData, items: newItems });
+  };
+
+  const handleAddItem = () => {
+    setFormData({ ...formData, items: [...formData.items, ''] });
+  };
+
+  const handleDeleteItem = (index) => {
+    const newItems = [...formData.items];
+    newItems.splice(index, 1);
+    setFormData({ ...formData, items: newItems });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.handleSubmit(formData);
+    setFormData({ formData: "" });
+    console.log(formData);
+  }
 
   return (
-    <form>
-      <label htmlFor="task">Task</label>
-      <input
-        type="text"
-        value={tasks.task}
-        onChange={handleChange} />
-        <input type="button" value="Submit" onClick={handleSubmit} />
-    </form>
-);
-
+    <div>
+      <h2>Task Library</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="title">Title:</label>
+        <input type="text" id="title" value={formData.title} onChange={handleTitleChange} />
+        {formData.items.map((item, index) => (
+          <div key={index}>
+            <label htmlFor={`item-${index}`}>Item:</label>
+            <input type="text" id={`item-${index}`} value={item} onChange={(event) => handleItemChange(index, event)} />
+            <button type="button" onClick={() => handleDeleteItem(index)}>Delete</button>
+          </div>
+        ))}
+        <button type="button" onClick={handleAddItem}>Add Item</button>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
+
 export default DataEntry;
