@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
+import Userfront from "@userfront/react";
+
 
 const Header = () => {
     return (
@@ -16,6 +18,12 @@ const Header = () => {
                         <li><Link to="/signup">signup</Link></li>
                     </ul>
                 </nav>
+                <img
+                    class="fill"
+                    src={Userfront.user.image}
+                    alt="User profile"
+                    style={{display: "flex", width: 50, height: 50, objectFit: "cover", borderRadius: "100%", justifyContent: "center"}}
+                />
             </div>
         </div>
     );
