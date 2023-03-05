@@ -35,9 +35,10 @@ luisangel.e10@gmail.com
 # Backend linking with MongoDB
 1. cd to app/backend dirrectory
 2. npm install express
-2. npm install --save-dev nodemon 
-1. npm install dotenv
-2. Create .env local file following the format:
+3. npm install --save-dev nodemon 
+4. npm install dotenv
+5. npm install multer
+6. Create .env local file following the format:
 
 Update the fields below with your mongoDB atlas info
 - `MONGO_USER=replace_with_your_mongodb_atlas_user`
