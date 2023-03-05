@@ -13,17 +13,21 @@ const Header = () => {
                     <ul>
                         <li><Link to="/dashboard">dashboard</Link></li>
                         <li><Link to="/newform">newform</Link></li>
-                        <li><Link to="/profile">profile</Link></li>
                         <li><Link to="/login">login</Link></li>
                         <li><Link to="/signup">signup</Link></li>
                     </ul>
                 </nav>
-                <img
-                    class="fill"
-                    src={Userfront.user.image}
-                    alt="User profile"
-                    style={{display: "flex", width: 50, height: 50, objectFit: "cover", borderRadius: "100%", justifyContent: "center"}}
-                />
+                <nav>                        
+                    <Link to="/profile">
+                    <img
+                        class="fill"
+                        src={Userfront.user.image}
+                        alt="User profile"
+                        style={{display: "flex", width: 50, height: 50, objectFit: "cover", borderRadius: "100%", justifyContent: "center"}}
+                    />
+                    </Link>
+                </nav>
+
             </div>
         </div>
     );
