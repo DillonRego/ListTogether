@@ -40,6 +40,7 @@ app.get('/tasks/:id', async (req, res) => {
 
 app.post("/tasks", async (req, res) => {
     console.log("received post request")
+    console.log(req.body)
     const task = req.body;
     const savedTask = await taskServices.addTask(task);
     if (savedTask)
@@ -53,6 +54,16 @@ app.delete("/tasks/:id", async (req, res) => {
     const id = req.params["id"];
     console.log(id);
     if (deleteTaskById(id))
+        res.status(204).end();
+    else
+        res.status(404).send("Resource not found.");
+});
+
+app.put("/tasks/:id", async (req, res) => {
+    console.log("received put request");
+    const id = req.params["id"];
+    console.log(id);
+    if (await taskServices.updateTask(id))
         res.status(204).end();
     else
         res.status(404).send("Resource not found.");

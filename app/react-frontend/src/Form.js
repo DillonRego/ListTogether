@@ -15,6 +15,12 @@ function FormBody(props) {
       return (
         <tr key={index}>
             <td>{row.task}</td>
+            {/* if the row.priority is high, use the exclamation-mark-red class */}
+            <td><img src="exclamation-mark-inside-a-circle-svgrepo-com.svg" alt="exclamation mark" class={"exclamation-mark-" + row.priority}/></td>
+            {/* add a checkbox that is checked if row.status is 1, but still give the user permission to select it. make sure this checkbox is changing accordingly */}
+            <td><input id={row.id + "_checkbox"} type="checkbox" checked={row.status === "1"} onChange={() => props.changeTaskStatus(index)}/></td>
+            
+            {/* <td><input type="checkbox" checked={row.status === "1"} onChange={() => props.changeTaskStatus(index)}/></td> */}
             <td>
                 <button onClick={() => props.removeTask(index)}>Delete</button>
             </td>
@@ -35,7 +41,7 @@ function FormBody(props) {
     return (
       <table>
         <FormHeader />
-        <FormBody taskData={props.taskData} removeTask={props.removeTask} />
+        <FormBody taskData={props.taskData} removeTask={props.removeTask} changeTaskStatus={props.changeTaskStatus}/>
       </table>
     );
   }
