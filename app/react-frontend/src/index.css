@@ -913,7 +913,6 @@ select {
   color: white;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAJCAYAAAA/33wPAAAAvklEQVQoFY2QMQqEMBBFv7ERa/EMXkGw11K8QbDXzuN4BHv7QO6ifUgj7v4UAdlVM8Uwf+b9YZJISnlqrfEUZVlinucnBGKaJgghbiHOyLyFKIoCbdvecpyReYvo/Ma2bajrGtbaC58kCdZ1RZ7nl/4/4d5EsO/7nzl7IUtodBexMMagaRrs+06JLMvcNWmaOv2W/C/TMAyD58dxROgSmvxFFMdxoOs6lliWBXEcuzokXRbRoJRyvqqqQvye+QDMDz1D6yuj9wAAAABJRU5ErkJggg==) right center no-repeat;
   line-height: 1;
 }
 
@@ -1045,5 +1044,55 @@ caption {
 .table-title:hover, .table-title:active, .table-title:focus, .table-title:visited, .table_title.onclick {
   border: none;
   color: rgb(200, 178, 178);
+  box-shadow: none;
+}
+
+/*  shring the exclamation-mark class signficnatly, probably 20px by 20px */
+.exclamation-mark-high {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: red;
+  clip: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  border-radius: 50%;
+  box-shadow: none;
+}
+.exclamation-mark-medium {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: yellow;
+  clip: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  border-radius: 50%;
+  box-shadow: none;
+}
+.exclamation-mark-low {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: green;
+  clip: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  border-radius: 50%;
   box-shadow: none;
 }

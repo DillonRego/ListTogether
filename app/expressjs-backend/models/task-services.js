@@ -50,6 +50,24 @@ async function addTask(task) {
   }
 }
 
+async function updateTask(id) {
+  try {
+    const taskToChange = await findTaskById(id);
+    console.log("task to change" + taskToChange)
+    if (taskToChange.status === "0") {
+      taskToChange.status = "1";
+    } else {
+      taskToChange.status = "0";
+    }
+    const savedTask = await new taskModel(taskToChange).save();
+    console.log(savedTask)
+    return savedTask;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 async function deleteTask(id) {
   return await taskModel.findByIdAndDelete(id);
 }
@@ -58,3 +76,4 @@ exports.getTasks = getTasks;
 exports.findTaskById = findTaskById;
 exports.addTask = addTask;
 exports.deleteTask = deleteTask;
+exports.updateTask = updateTask;
