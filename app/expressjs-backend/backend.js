@@ -18,14 +18,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/lists', async (req, res) => {
-    // return all tasks
-    try {
-        const lists_from_db = await listServices.getLists();
-        res.send({ tasks_list: lists_from_db });
-    } catch (error) {
-        console.log('Mongoose error: ' + error);
-        res.status(500).send('An error ocurred in the server.');
-    }
+  const { userUuid } = req.query;
+  try {
+    const lists_from_db = await listServices.getLists(userUuid);
+    res.send({ tasks_list: lists_from_db });
+  } catch (error) {
+    console.log('Mongoose error: ' + error);
+    res.status(500).send('An error ocurred in the server.');
+  }
 });
 
 app.get('/lists/:id', async (req, res) => {

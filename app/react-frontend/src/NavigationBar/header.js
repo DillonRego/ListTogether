@@ -5,6 +5,8 @@ import Userfront from "@userfront/react";
 
 
 const Header = () => {
+    const isLoggedIn = Userfront.accessToken();
+
     return (
         <div className="container">
             <div className="header">
@@ -13,22 +15,32 @@ const Header = () => {
                     <ul>
                         <li><Link to="/dashboard">dashboard</Link></li>
                         <li><Link to="/newform">newform</Link></li>
-                        <li><Link to="/login">login</Link></li>
-                        <li><Link to="/signup">signup</Link></li>
                         <li><Link to="/upload">upload</Link></li>
                         <li><Link to="/gallery">gallery</Link></li>
+                        {!isLoggedIn && (
+                            <>
+                            <div className="login">
+                                <li><Link to="/login">login</Link></li>
+                                <li><Link to="/signup">signup</Link></li>
+                            </div>
+                            </>
+                        )}
                     </ul>
                 </nav>
-                <nav>                        
-                    <Link to="/profile">
-                    <img
-                        class="fill"
-                        src={Userfront.user.image}
-                        alt="User profile"
-                        style={{display: "flex", width: 50, height: 50, objectFit: "cover", borderRadius: "100%", justifyContent: "center"}}
-                    />
-                    </Link>
-                </nav>
+                {isLoggedIn && (
+                    <div className="profile">
+                    <nav>                        
+                        <Link to="/profile">
+                            <img
+                                class="fill"
+                                src={Userfront.user.image}
+                                alt="User profile"
+                                style={{display: "flex", width: 50, height: 50, objectFit: "cover", borderRadius: "100%", justifyContent: "center"}}
+                            />
+                        </Link>
+                    </nav>
+                    </div>
+                )}
 
             </div>
         </div>

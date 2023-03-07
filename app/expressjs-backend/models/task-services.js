@@ -25,9 +25,10 @@ mongoose
   )
   .catch((error) => console.log(error));
 
-async function getLists() {
-  return await listModel.find();
-}
+  async function getLists(userUuid) {
+    return await listModel.find({ userUuid: userUuid });
+  }
+  
 
 async function findListById(id) {
   try {
