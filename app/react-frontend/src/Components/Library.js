@@ -1,37 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import Dashboard from './dashboard';
 import axios from 'axios';
-import Userfront from '@userfront/react';
+import { useParams } from 'react-router-dom';
 
-function Library(props) {
-  const [libraryData, setLibraryData] = useState([]);
+function Library() {
+  const [libraryData, setLibraryData] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
-    fetchAll().then(result => {
+    fetchLibraryData(id).then(result => {
       if (result) {
         setLibraryData(result);
       }
     });
-  }, []);
+  }, [id]);
 
-  async function fetchAll() {
-    const user = Userfront.user;
+  async function fetchLibraryData(_id) {
     try {
-      const response = await axios.get('http://localhost:5000/lists', {
-        params: {
-          userUuid: user.userUuid,
-        },
-      });
+      const response = await axios.get(`http://localhost:5000/lists/${_id}`);
+      console.log(response.data.tasks_list)
       return response.data.tasks_list;
     } catch (error) {
       console.log(error);
-      return false;
+      return null;
     }
+  }
+
+  if (!libraryData) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="container">
-      <Dashboard libraryData={libraryData} />
+      <h2>{libraryData.title}</h2>
+      <img src={libraryData.images[0]} alt={libraryData.title} />
+      <ul className="items">
+        {libraryData.items.map((item, i) => (
+          <li key={i}>{item}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

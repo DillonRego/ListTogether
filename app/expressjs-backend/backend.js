@@ -66,7 +66,7 @@ async function deleteListById(id) {
     }
 }
 
-//image requests start here
+/*image requests start here*/
 
 // Create a schema for the images
 const imageSchema = new mongoose.Schema({
