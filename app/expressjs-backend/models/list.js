@@ -17,9 +17,12 @@ const ListSchema = new mongoose.Schema({
     }
   },
   images: {
-    type: [String],
-    }
-
+    type: [String]
+  },
+  userUuid: {
+    type: String,
+    required: true
+  }
 }, {collection : 'tasks_list'});
 
 const List = mongoose.model("List", ListSchema);

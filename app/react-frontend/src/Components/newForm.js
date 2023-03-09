@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import DataEntry from './dataEntry';
 import axios from 'axios';
+import Userfront from '@userfront/react';
 
 function NewForm() {
   const history = useNavigate();
@@ -16,9 +17,14 @@ function NewForm() {
   }, []);
 
   async function fetchAll() {
+    const user = Userfront.user;
     try {
-      const response = await axios.get('http://localhost:5000/lists');
-      return response.data.libraryData;
+      const response = await axios.get('http://localhost:5000/lists', {
+        params: {
+          userUuid: user.userUuid,
+        },
+      });
+      return response.data.tasks_list;
     } catch (error) {
       console.log(error);
       return false;
@@ -26,8 +32,13 @@ function NewForm() {
   }
 
   async function makePostCall(item) {
+    const user = Userfront.user;
+    const library = {
+      ...item,
+      userUuid: user.userUuid, // include the user's UUID in the Library
+    };
     try {
-      const response = await axios.post('http://localhost:5000/lists', item);
+      const response = await axios.post('http://localhost:5000/lists', library);
       return response;
     } catch (error) {
       console.log(error);

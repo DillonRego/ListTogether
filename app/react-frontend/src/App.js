@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Navigate, useLocation, BrowserRouter, Routes } from "react-router-dom";
 import Userfront from "@userfront/react";
 import Header from './NavigationBar/header';
+import Libraries from './Dashboard/Libraries';
 import Library from './Components/Library';
 import Profile from "./Components/Profile";
 import NewForm from './Components/newForm';
@@ -27,12 +28,12 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />
-            <Route path="/dashboard" element={<RequireAuth><Library /></RequireAuth>} />
+            <Route path="/dashboard" element={<RequireAuth><Libraries /></RequireAuth>} />
             <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
             <Route path="/newform" element={<RequireAuth><NewForm /></RequireAuth>} />
             <Route path="/upload" element = {<RequireAuth><ImageUpload /></RequireAuth>} />
             <Route path="/gallery" element = {<RequireAuth><ImageDisplay /></RequireAuth>} />
-
+            <Route path="/lists/:id" element = {<RequireAuth><Library /></RequireAuth>} />
           </Routes>
         </BrowserRouter>
       </div>
