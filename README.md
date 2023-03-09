@@ -30,7 +30,8 @@ luisangel.e10@gmail.com
 - cd to the app/frontend directory first
 - npm install
 - npm install react-router-dom --save
-- npm install install @userfront/react --save
+- npm install @userfront/react --save
+- npm i react-bootstrap
 
 # Backend linking with MongoDB
 1. cd to app/backend dirrectory
