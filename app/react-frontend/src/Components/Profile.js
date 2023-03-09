@@ -18,7 +18,7 @@ const Profile = () => {
         <img
           src={link}
           alt="User profile"
-          style={{ maxWidth: '100%', marginBottom: '16px' }}
+          style={{width: 200, height: 200, margin: 5}}
         />
         <label htmlFor="imglink">Link To Profile Image:</label>
       <input type="text" id="title" value={link} onChange={d => setLink(d.target.value)}/>
