@@ -8,6 +8,7 @@ import Profile from "./Components/Profile";
 import NewForm from './Components/newForm';
 import ImageUpload from './Components/imageUpload';
 import ImageDisplay from './Components/imageDisplay';
+import './App.css'
 
 const SignupForm = Userfront.build({
   toolId: "nkdmaal"
@@ -22,21 +23,23 @@ Userfront.init("vnd78z9b");
 function App() {
 
   return (
-    <div className="container">
+    <div className='App'>
       <BrowserRouter>
-      <Header />
+        <Header />
+        <div className='content'>
           <Routes>
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />
             <Route path="/dashboard" element={<RequireAuth><Libraries /></RequireAuth>} />
             <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
             <Route path="/newform" element={<RequireAuth><NewForm /></RequireAuth>} />
-            <Route path="/upload" element = {<RequireAuth><ImageUpload /></RequireAuth>} />
-            <Route path="/gallery" element = {<RequireAuth><ImageDisplay /></RequireAuth>} />
-            <Route path="/lists/:id" element = {<RequireAuth><Library /></RequireAuth>} />
+            <Route path="/upload" element={<RequireAuth><ImageUpload /></RequireAuth>} />
+            <Route path="/gallery" element={<RequireAuth><ImageDisplay /></RequireAuth>} />
+            <Route path="/lists/:id" element={<RequireAuth><Library /></RequireAuth>} />
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
+    </div>
   );
 
   function RequireAuth({ children }) {

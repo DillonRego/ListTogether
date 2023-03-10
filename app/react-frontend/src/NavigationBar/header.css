@@ -1,73 +1,15 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 35px;
-  }
-  
-  .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #333;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin-bottom: 20px;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 10px;
-    color: #fff;
-  }
-  
-  .profile {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  .login{
-    display: flex;
-    position: fixed;
-    right: 0;
-  }
-  
-  
-  nav {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-  }
-  
-  nav li{
-    margin: 0 10px;
-  }
-  
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  nav a:hover {
-    background-color: #fff;
-    color: #333;
-  }
-  
+.bg-nav-color {
+  background-color: #181818
+}
+
+.navbar-brand{
+  font-family: 'Proxima nova', sans-serif;
+  color: #ffffff !important;
+  font-size: 30px;
+  margin: 20px;
+}
+
+.nav-link{
+  font-family: 'Proxima nova', sans-serif;
+  margin: 5px;
+}
