@@ -30,7 +30,7 @@ function Libraries(props) {
   }
 
   return (
-    <div className="container">
+    <div>
       <Dashboard libraryData={libraryData} />
     </div>
   );
