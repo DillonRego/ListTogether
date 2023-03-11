@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import './Form.css'
 
 function DataEntry(props) {
-  
+
   const [pics, setImages] = useState([]);
   const [formData, setFormData] = useState({
     title: '',
@@ -53,30 +55,43 @@ function DataEntry(props) {
   return (
     <div>
       <h2>Task Library</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title:</label>
-        <input type="text" id="title" value={formData.title} onChange={handleTitleChange} />
-        <label htmlFor="image">Image:</label>
-        <div className="image-grid"style={{ display: "flex", flexDirection: "row"}}>
-          {pics.map((images) => (
-            <div key={images._id}>
-              <input type="radio" id={`image-${images._id}`} name="image" value={images._id} checked={formData.images === images._id} onChange={handleImageChange} />
-              <label htmlFor={`image-${images._id}`}>
-                <img src={`data:${images.contentType};base64,${images.data}`} alt={images.filename} style={{width: 100, height: 100, padding: "10px"}} />
-              </label>
-            </div>
-          ))}
-        </div>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="title">
+          <Form.Control type="text" value={formData.title} onChange={handleTitleChange} placeholder="My Library Title"/>
+        </Form.Group>
+        <Form.Group controlId="image">
+          <Form.Label>Image:</Form.Label>
+          <Row>
+            {pics.map((images) => (
+              <Col key={images._id} xs={4}>
+                <Form.Check
+                  type="radio"
+                  id={`image-${images._id}`}
+                  name="image"
+                  value={images._id}
+                  checked={formData.images === images._id}
+                  onChange={handleImageChange}
+                  label={
+                    <img
+                      src={`data:${images.contentType};base64,${images.data}`}
+                      alt={images.filename}
+                      style={{ width: 100, height: 100, padding: "10px" }}
+                    />
+                  }
+                />
+              </Col>
+            ))}
+          </Row>
+        </Form.Group>
         {formData.items.map((item, index) => (
-          <div key={index}>
-            <label htmlFor={`item-${index}`}>Item:</label>
-            <input type="text" id={`item-${index}`} value={item} onChange={(event) => handleItemChange(index, event)} />
-            <button type="button" onClick={() => handleDeleteItem(index)}>Delete</button>
-          </div>
+          <Form.Group controlId={`item-${index}`} key={index}>
+            <Form.Control type="text" value={item} onChange={(event) => handleItemChange(index, event)} placeholder="Task" />
+            <Button variant="danger" type="button" onClick={() => handleDeleteItem(index)}>Delete</Button>
+          </Form.Group>
         ))}
-        <button type="button" onClick={handleAddItem}>Add Item</button>
-        <button type="submit">Submit</button>
-      </form>
+        <Button variant="primary" type="button" onClick={handleAddItem}>Add Item</Button>
+        <Button variant="primary" type="submit">Submit</Button>
+      </Form>
     </div>
   );
 }

@@ -50,7 +50,7 @@ function TableBody(props) {
 
 function Dashboard(props) {
   return (
-    <div className="dashboard">
+    <div className="id">
       <h1 className="title">Library</h1>
       <TableBody libraryData={props.libraryData} />
     </div>
