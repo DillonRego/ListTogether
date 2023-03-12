@@ -31,7 +31,7 @@ function TableBody(props) {
       <Row key={index} md={3} className="card-row">
         <Link to={`/lists/${task._id}`}>
           <Card className="card">
-            <Card.Img variant="top" src={`data:${getImage(task.images[0]).contentType};base64,${getImage(task.images[0]).data}`} className="card-img" />
+            <Card.Img variant="top" src={`data:${getImage(task.image).contentType};base64,${getImage(task.image).data}`} className="card-img" />
             <Card.Body>
               <Card.Title >{task.title}</Card.Title>
             </Card.Body>

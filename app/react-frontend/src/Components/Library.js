@@ -68,7 +68,7 @@ function Library() {
       <Row>
         <Col md={6}>
           <Image className='img-fluid'
-          src={`data:${getImage(libraryData.images[0]).contentType};base64,${getImage(libraryData.images[0]).data}`} alt={libraryData.title} fluid />
+          src={`data:${getImage(libraryData.image).contentType};base64,${getImage(libraryData.image).data}`} alt={libraryData.title} fluid />
         </Col>
         <Col md={6}>
           <h2 className='library-title'>{libraryData.title}</h2>

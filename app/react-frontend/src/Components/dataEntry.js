@@ -9,7 +9,7 @@ function DataEntry(props) {
   const [formData, setFormData] = useState({
     title: '',
     items: [''],
-    images: ['']
+    image: ''
   });
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function DataEntry(props) {
   }, []);
 
   const handleImageChange = (event) => {
-    setFormData({ ...formData, images: event.target.value });
+    setFormData({ ...formData, image: event.target.value });
   }
 
   const handleTitleChange = (event) => {
@@ -49,7 +49,7 @@ function DataEntry(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.handleSubmit(formData);
-    setFormData({ title: '', items: [''], image: null });
+    setFormData({ title: '', items: [''], image: '' });
   }
 
   return (
@@ -69,7 +69,7 @@ function DataEntry(props) {
                   id={`image-${images._id}`}
                   name="image"
                   value={images._id}
-                  checked={formData.images === images._id}
+                  checked={formData.image === images._id}
                   onChange={handleImageChange}
                   label={
                     <img

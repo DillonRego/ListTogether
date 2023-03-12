@@ -16,8 +16,8 @@ const ListSchema = new mongoose.Schema({
       if (value.length < 1) throw new Error("List cannot be empty.");
     }
   },
-  images: {
-    type: [String]
+  image: {
+    type: String
   },
   userUuid: {
     type: String,
