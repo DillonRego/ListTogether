@@ -6,10 +6,32 @@ const Profile = () => {
   const userData = Userfront.user;
 
   const [link, setLink] = useState(userData.image);
+  const [bState, setButton] = useState(false);
+  const [bText, setBText] = useState("Edit");
 
   function updateLink(link) {
     userData.update({image: link});
     console.log(link);
+  }
+
+  function toggleShowImageData() {
+    setButton(!bState);
+    if(bText === "Edit")
+      setBText("Close");
+    else
+      setBText("Edit");
+  }
+
+  function SelectiveRender() {
+    if(bState === true) {
+      return (
+        <Form.Group controlId="imglink">
+          <Form.Label>Link To Profile Image:</Form.Label>
+          <Form.Control type="text" value={link} onChange={d => setLink(d.target.value)} />
+          <Button variant="primary" onClick={() => updateLink(link)}>Submit</Button>
+        </Form.Group>
+      )
+    }
   }
 
   return (
@@ -21,11 +43,10 @@ const Profile = () => {
           style={{width: 200, height: 200, margin: 5}}
           roundedCircle
         />
-        <Form.Group controlId="imglink">
-          <Form.Label>Link To Profile Image:</Form.Label>
-          <Form.Control type="text" value={link} onChange={d => setLink(d.target.value)} />
-        </Form.Group>
-        <Button variant="primary" onClick={() => updateLink(link)}>Submit</Button>
+        <h2>
+          <Button variant="primary" onClick={toggleShowImageData}>{bText}</Button>
+        </h2>
+        <SelectiveRender></SelectiveRender>
         <h2>{userData.name}</h2>
         <p>@{userData.username}</p>
         <p>{userData.email}</p>
