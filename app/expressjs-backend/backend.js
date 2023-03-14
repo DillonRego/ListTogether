@@ -141,6 +141,29 @@ app.get('/images', async (req, res) => {
     }
 });
 
+app.delete('/images/:id', async (req, res) => {
+    console.log("received delete request");
+    const id = req.params["id"];
+    console.log(id);
+    if (deleteImageById(id))
+        res.status(204).end();
+    else
+        res.status(404).send("Resource not found.");
+});
+
+async function deleteImageById(id) {
+    try {
+        if (await deleteImage(id)) return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+async function deleteImage(id) {
+    return await Image.findByIdAndDelete(id);
+}
+
 //image requests end here
 
 app.listen(process.env.PORT || port, () => {
