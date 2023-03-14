@@ -14,17 +14,24 @@ const ImageDisplay = () => {
       });
   }, []);
 
+  function deleteImage(id) {
+    axios.delete('http://localhost:5000/images/' + id);
+    window.location.reload(true);
+  }
+
   return (
     <div>
-      <h1>Image Gallery</h1>
+      <h1>Image Gallery (click to delete)</h1>
       <div className="image-gallery">
         {images.map(image => (
+          <button onClick={() => deleteImage(image._id)}>
           <img
             key={image._id}
             src={`data:${image.contentType};base64,${image.data}`}
             alt={image.filename}
             style={{width: 100, height: 100, margin: 5}}
           />
+          </button>
         ))}
       </div>
     </div>
