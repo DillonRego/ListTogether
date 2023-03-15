@@ -51,7 +51,7 @@ app.delete("/lists/:id", async (req, res) => {
     console.log("received delete request");
     const id = req.params["id"];
     console.log(id);
-    if (deleteListById(id))
+    if (await listServices.deleteList(id))
         res.status(204).end();
     else
         res.status(404).send("Resource not found.");

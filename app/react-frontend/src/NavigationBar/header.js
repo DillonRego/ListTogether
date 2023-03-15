@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <Navbar bg = "nav-color" variant="dark" sticky="top"> 
-        <Navbar.Brand href="dashboard">ListTogether</Navbar.Brand>
+        <Navbar.Brand href="/dashboard">ListTogether</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav>
