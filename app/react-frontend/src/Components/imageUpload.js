@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
+  const port = 5000;
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
@@ -13,7 +14,7 @@ const ImageUpload = () => {
     formData.append('image', image);
 
     try {
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      const response = await axios.post('http://localhost:' + port + '/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       console.log(response.data);

@@ -38,6 +38,19 @@ app.get('/lists/:id', async (req, res) => {
     res.send({ tasks_list: result });
 });
 
+app.post('/lists/:id', async (req, res) => {
+    console.log("received post request");
+    const id = req.params['id']; //or req.params.id
+    let result = await listServices.findListById(id);
+    if (result === undefined || result === null)
+        res.status(404).send('Resource not found.');
+    else {
+        result.status = req.body.status;
+        await listServices.updateList(id, result);
+        res.send({ tasks_list: result });
+    }
+});
+
 app.post("/lists", async (req, res) => {
   console.log("received post request")
   const list = req.body;

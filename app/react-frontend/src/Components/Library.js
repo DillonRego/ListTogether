@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Row, Col, Image, Table, Button } from 'react-bootstrap';
+import ExclamationMark from '../Icons/exclamation.js';
 //import Userfront from "@userfront/react";
 import './Library.css'
 
@@ -10,10 +11,11 @@ function Library() {
   const [images, setImages] = useState([]);
   const { id } = useParams();
   const history = useNavigate();
+  const port = 5000;
   const shareURL = window.location.href;
 
   useEffect(() => {
-    axios.get('http://localhost:5000/images')
+    axios.get('http://localhost:' + port + '/images')
       .then(res => {
         setImages(res.data);
       })
@@ -32,7 +34,7 @@ function Library() {
 
   async function fetchLibraryData(_id) {
     try {
-      const response = await axios.get(`http://localhost:5000/lists/${_id}`);
+      const response = await axios.get(`http://localhost:` + port + `/lists/${_id}`);
       console.log(response.data.tasks_list)
       return response.data.tasks_list;
     } catch (error) {
@@ -65,6 +67,19 @@ function Library() {
 
   function handleBack() {
     history('/dashboard');
+  }
+
+  function handleStatusChange(index) {
+    let newStatus = [...libraryData.status];
+    newStatus[index] = newStatus[index] === "0" ? "1" : "0";
+    setLibraryData({...libraryData, status: newStatus});
+    axios.post(`http://localhost:` + port + `/lists/${id}/`, {status: newStatus})
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
   }
 
   function handleDelete() {
@@ -103,6 +118,8 @@ function Library() {
               <tr className='thead'>
                 <th>#</th>
                 <th>Item</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody >
@@ -110,6 +127,10 @@ function Library() {
                 <tr key={i} className='tbody'>
                   <td>{i + 1}</td>
                   <td>{item}</td>
+                  <td><ExclamationMark className={"exclamation-mark-" + libraryData.priority[i]}/></td>
+                  <td class = "checkbox-rect">
+                    <input id={libraryData.status[i] + "_checkbox"}  type="checkbox" checked={libraryData.status[i] === "1" }  onClick = {() => handleStatusChange(i)}/>
+                  </td>
                 </tr>
               ))}
             </tbody>

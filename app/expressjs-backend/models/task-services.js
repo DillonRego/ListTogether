@@ -101,6 +101,12 @@ async function addList(list) {
   // }
 }
 
+async function updateList(id, list) {
+  return await listModel.findByIdAndUpdate(id, list, { new: true });
+}
+
+
+
 async function deleteList(id) {
 
   const listModel = getDbConnection().model("List", ListSchema);
@@ -116,4 +122,5 @@ module.exports = {
   addList,
   deleteList,
   setConnection,
+  updateList,
 };

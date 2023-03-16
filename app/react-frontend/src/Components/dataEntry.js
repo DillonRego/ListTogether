@@ -9,11 +9,14 @@ function DataEntry(props) {
   const [formData, setFormData] = useState({
     title: '',
     items: [''],
+    status: ['0'],
+    priority: [''],
     image: ''
   });
+  const port = 5000;
 
   useEffect(() => {
-    axios.get('http://localhost:5000/images')
+    axios.get('http://localhost:' + port + '/images')
       .then(res => {
         setImages(res.data);
       })
@@ -37,20 +40,30 @@ function DataEntry(props) {
   };
 
   const handleAddItem = () => {
-    setFormData({ ...formData, items: [...formData.items, ''] });
+    setFormData({ ...formData, items: [...formData.items, ''], status : [...formData.status, '0']});
   };
 
   const handleDeleteItem = (index) => {
     const newItems = [...formData.items];
     newItems.splice(index, 1);
-    setFormData({ ...formData, items: newItems });
+    const newStatus = [...formData.status];
+    newStatus.splice(index, 1);
+    setFormData({ ...formData, items: newItems, status: newStatus });
   };
+
+  const handlePriorityChange = (index, event) => {
+    const newPriorities = [...formData.priority];
+    newPriorities[index] = event.target.value;
+    setFormData({ ...formData, priority: newPriorities });
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     props.handleSubmit(formData);
-    setFormData({ title: '', items: [''], image: '' });
+    setFormData({ title: '', items: [''], image: '', status: ['0'], priority: ['']});
   }
+
+
 
   return (
     <div>
@@ -86,6 +99,13 @@ function DataEntry(props) {
         {formData.items.map((item, index) => (
           <Form.Group controlId={`item-${index}`} key={index}>
             <Form.Control type="text" value={item} onChange={(event) => handleItemChange(index, event)} placeholder="Task" />
+            <Form.Label>Priority:</Form.Label>
+              <Form.Control as="select" onChange={(event) => handlePriorityChange(index, event)}>
+                <option>Select Priority</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </Form.Control>
             <Button variant="danger" type="button" onClick={() => handleDeleteItem(index)}>Delete</Button>
           </Form.Group>
         ))}
