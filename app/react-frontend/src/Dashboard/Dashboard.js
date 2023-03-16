@@ -6,7 +6,7 @@ import './dashboard.css'
 
 function TableBody(props) {
   const [images, setImages] = useState([]);
-  const port = 5000;
+  const port = 5001;
 
   useEffect(() => {
     axios.get('http://localhost:' + port + '/images')
