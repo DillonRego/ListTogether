@@ -17,11 +17,9 @@ jobs:
       - run: |
           cd app/expressjs-backend
           npm ci
-          npm run dev
 #          npm test
       - run: |
           cd app/react-frontend
           npm ci
-          npm start
 
 
