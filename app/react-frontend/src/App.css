@@ -32,3 +32,14 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.images{
+    border-radius: 15px;
+    width: 200px;
+    height: 235px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.images:hover {
+    transform: translateY(-5px);
+  }

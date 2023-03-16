@@ -26,10 +26,10 @@ const ImageDisplay = () => {
       <div className="image-gallery" style={{ display: "flex", flexWrap: "wrap" }}>
         {images.map(image => (
           <button key={image._id} onClick={() => deleteImage(image._id)} style={{ margin: "5px", border: "none", background: "none" }}>
-            <img
+            <img  className="images"
               src={`data:${image.contentType};base64,${image.data}`}
               alt={image.filename}
-              style={{ width: "200px", height: "235px", objectFit: "cover" }}
+              style={{ objectFit: "cover"}}
             />
           </button>
         ))}
