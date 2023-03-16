@@ -102,6 +102,7 @@ async function addList(list) {
 }
 
 async function updateList(id, list) {
+  const listModel = getDbConnection().model("List", ListSchema);
   return await listModel.findByIdAndUpdate(id, list, { new: true });
 }
 
