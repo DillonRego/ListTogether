@@ -39,9 +39,12 @@ luisangel.e10@gmail.com
 3. npm install --save-dev nodemon 
 4. npm install dotenv
 5. npm install multer
-6. Create .env local file following the format:
+6. npm install jest
+7. npm i mongodb-memory-server
+8. Create .env local file following the format:
 
 Update the fields below with your mongoDB atlas info
+- `MONGODB_URI=replace_with_your_mongodb_atlas_url`
 - `MONGO_USER=replace_with_your_mongodb_atlas_user`
 - `MONGO_PWD=replace_with_your__mongodb_atlas_password`
 - `MONGO_DB=replace_with_your_mongodb_db`
