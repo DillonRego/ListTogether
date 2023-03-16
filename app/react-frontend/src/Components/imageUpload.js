@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
-  const port = 5001;
+  const port = 5000;
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
