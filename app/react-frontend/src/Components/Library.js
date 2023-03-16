@@ -45,7 +45,7 @@ function Library() {
 
   async function deleteLibrary(_id) {
     try {
-      const response = await axios.delete(`http://localhost:5000/lists/${_id}`);
+      const response = await axios.delete(`http://localhost:` + port + `/lists/${_id}`);
       if (response.status === 204) {
         handleBack();
       }

@@ -16,7 +16,7 @@ const ImageDisplay = () => {
   }, []);
 
   function deleteImage(id) {
-    axios.delete('http://localhost:5000/images/' + id);
+    axios.delete('http://localhost:' + port + '/images/' + id);
     window.location.reload(true);
   }
 
