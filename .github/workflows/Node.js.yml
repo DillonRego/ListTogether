@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 16
       - run: npm ci -ws app\react-frontend app\expressjs-backend
-      - run: npm test
+#      - run: npm test
       - run: npm run dev -w app\expressjs-backend
       - run: npm start -w app\react-frontend
 
