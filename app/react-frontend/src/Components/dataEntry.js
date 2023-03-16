@@ -60,7 +60,7 @@ function DataEntry(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.handleSubmit(formData);
-    setFormData({ title: '', items: [''], image: '', status: [''], priority: ['']});
+    setFormData({ title: '', items: [''], image: '', status: ['0'], priority: ['']});
   }
 
 

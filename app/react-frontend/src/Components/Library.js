@@ -69,7 +69,6 @@ function Library() {
     history('/dashboard');
   }
 
-  // create a handler that, when the status checkbox is clicked, updates the status in the database by initiating a post request
   function handleStatusChange(index) {
     let newStatus = [...libraryData.status];
     newStatus[index] = newStatus[index] === "0" ? "1" : "0";
@@ -80,7 +79,8 @@ function Library() {
       })
       .catch(err => {
         console.error(err);
-  });
+      })
+  }
 
   function handleDelete() {
     deleteLibrary(id);
