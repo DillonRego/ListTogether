@@ -40,7 +40,7 @@ function DataEntry(props) {
   };
 
   const handleAddItem = () => {
-    setFormData({ ...formData, items: [...formData.items, ''], status : [...formData.status, '0']});
+    setFormData({ ...formData, items: [...formData.items, ''], status: [...formData.status, '0'] });
   };
 
   const handleDeleteItem = (index) => {
@@ -60,18 +60,15 @@ function DataEntry(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.handleSubmit(formData);
-    setFormData({ title: '', items: [''], image: '', status: ['0'], priority: ['']});
+    setFormData({ title: '', items: [''], image: '', status: ['0'], priority: [''] });
   }
 
 
 
   return (
     <div>
-      <h2>Task Library</h2>
+      <h2 className="newForm-title">Task Library</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="title">
-          <Form.Control type="text" value={formData.title} onChange={handleTitleChange} placeholder="My Library Title"/>
-        </Form.Group>
         <Form.Group controlId="image">
           <Form.Label>Image:</Form.Label>
           <Row>
@@ -96,21 +93,31 @@ function DataEntry(props) {
             ))}
           </Row>
         </Form.Group>
+        <Form.Group controlId="title">
+          <Form.Control type="text" value={formData.title} onChange={handleTitleChange} placeholder="My Library Title" />
+        </Form.Group>
         {formData.items.map((item, index) => (
           <Form.Group controlId={`item-${index}`} key={index}>
-            <Form.Control type="text" value={item} onChange={(event) => handleItemChange(index, event)} placeholder="Task" />
-            <Form.Label>Priority:</Form.Label>
-              <Form.Control as="select" onChange={(event) => handlePriorityChange(index, event)}>
-                <option>Select Priority</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </Form.Control>
-            <Button variant="danger" type="button" onClick={() => handleDeleteItem(index)}>Delete</Button>
+            <Row>
+              <Col>
+                <Form.Control type="text" value={item} onChange={(event) => handleItemChange(index, event)} placeholder="Task" />
+              </Col>
+              <Col xs={2}>
+                <Form.Control as="select" onChange={(event) => handlePriorityChange(index, event)}>
+                  <option>Select Priority</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </Form.Control>
+              </Col>
+              <Col xs={1}>
+                <Button className="dangerBtn" variant="danger" type="button" onClick={() => handleDeleteItem(index)}>Delete</Button>
+              </Col>
+            </Row>
           </Form.Group>
         ))}
-        <Button variant="primary" type="button" onClick={handleAddItem}>Add Item</Button>
-        <Button variant="primary" type="submit">Submit</Button>
+        <Button className="primaryBtn" variant="primary" type="button" onClick={handleAddItem}>Add Item</Button>
+        <Button className="primaryBtn" variant="primary" type="submit">Submit</Button>
       </Form>
     </div>
   );
