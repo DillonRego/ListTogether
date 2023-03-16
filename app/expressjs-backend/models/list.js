@@ -2,12 +2,9 @@ const mongoose = require("mongoose");
 
 const ListSchema = new mongoose.Schema({
   title: {
-    type: String,
     required: true,
-    trim: true,
-    validate(value) {
-      if (value.length < 1) throw new Error("Invalid Title.");
-    }
+    type: String,
+    trim: true
   },
   items: {
     type: [String],
@@ -25,6 +22,6 @@ const ListSchema = new mongoose.Schema({
   }
 }, {collection : 'tasks_list'});
 
-const List = mongoose.model("List", ListSchema);
+//const List = mongoose.model("List", ListSchema);
 
-module.exports = List;
+module.exports = ListSchema;
