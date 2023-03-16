@@ -38,7 +38,9 @@ beforeEach(async () => {
         userUuid: test_Uuid,
         title: "School",
         items: ["presentation on friday"],
-        image: test_image
+        image: test_image,
+        status: ["0"],
+        priority: ["low"]
     };
     let result = new listModel(dummyList);
     await result.save();
@@ -72,7 +74,9 @@ test("Fetching by valid id and finding", async () => {
         userUuid: test_Uuid,
         title: "School",
         items: ["presentation on friday"],
-        image: test_image
+        image: test_image,
+        status: ["0"],
+        priority: ["low"]
     };
     const result = new listModel(dummyList);
     const addedlist = await result.save();
@@ -88,7 +92,9 @@ test("Adding user -- successful path", async () => {
         userUuid: test_Uuid,
         title: "School",
         items: ["presentation on friday"],
-        image: test_image
+        image: test_image,
+        status: ["0"],
+        priority: ["low"]
     };
     const result = await listServices.addList(dummyList);
     expect(result).toBeTruthy();
@@ -101,7 +107,9 @@ test("Adding user -- failure path with no title", async () => {
     const dummyList = {
         userUuid: test_Uuid,
         items: ["presentation on friday"],
-        image: test_image
+        image: test_image,
+        status: ["0"],
+        priority: ["low"]
     };
     await expect(listServices.addList(dummyList)).rejects.toThrowError(
         "List validation failed: title: Path `title` is required."
@@ -113,7 +121,9 @@ test("Adding user -- failure path with empty title", async () => {
         userUuid: test_Uuid,
         title: "",
         items: ["presentation on friday"],
-        image: test_image
+        image: test_image,
+        status: ["0"],
+        priority: ["low"]
     };
     await expect(listServices.addList(dummyList)).rejects.toThrowError(
         "List validation failed: title: Path `title` is required."
@@ -124,7 +134,9 @@ test("Adding user -- failure path with no items", async () => {
     const dummyList = {
         userUuid: test_Uuid,
         title: "School",
-        image: test_image
+        image: test_image,
+        status: ["0"],
+        priority: ["low"]
     };
     await expect(listServices.addList(dummyList)).rejects.toThrowError(
         "List validation failed: items: List cannot be empty."
@@ -136,7 +148,9 @@ test("Deleting a user by Id -- successful path", async () => {
         userUuid: test_Uuid,
         title: "School",
         items: ["presentation on friday"],
-        image: test_image
+        image: test_image,
+        status: ["0"],
+        priority: ["low"]
     };
     const result = new listModel(dummyList);
     const addedlist = await result.save();
@@ -172,4 +186,19 @@ test("Deleting a image by Id", async () => {
     const result = await listServices.addImage(dummyImage);
     const deleteResult = await listServices.deleteImageById(result.id);
     expect(deleteResult).toBeTruthy();
+});
+
+test("Updating a list by Id", async () => {
+    const dummyList = {
+        userUuid: test_Uuid,
+        title: "School",
+        items: ["presentation on friday"],
+        image: test_image,
+        status: ["0"],
+        priority: ["low"]
+    };
+    const result = new listModel(dummyList);
+    const addedlist = await result.save();
+    const updateResult = await listServices.updateList(addedlist._id, dummyList);
+    expect(updateResult).toBeTruthy();
 });

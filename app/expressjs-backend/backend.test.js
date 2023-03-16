@@ -35,7 +35,9 @@ test("test findListById Groceries", async () => {
         userUuid: test_Uuid, 
         title: "Groceries", 
         items: ["Milk"], 
-        image: test_image };
+        image: test_image,
+        status: ["0"],
+        priority: ["low"] };
     const add = await listServices.addList(list);
     const id = add._id;
     const result = await listServices.findListById(id);
@@ -82,7 +84,9 @@ test("test addList School, presentation on friday", async () => {
         userUuid: test_Uuid, 
         title: "School", 
         items: ["presentation on friday"], 
-        image: test_image };
+        image: test_image,
+        status: ["0"],
+        priority: ["low"] };
     const add = await listServices.addList(list);
     test_id = add._id;
     const result = await listServices.findListById(test_id);

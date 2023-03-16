@@ -13,7 +13,7 @@ function DataEntry(props) {
     priority: [''],
     image: ''
   });
-  const port = 5000;
+  const port = 5001;
 
   useEffect(() => {
     axios.get('http://localhost:' + port + '/images')
