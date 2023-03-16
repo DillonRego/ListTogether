@@ -16,6 +16,7 @@ jobs:
           node-version: 16
       - run: |
           cd app/expressjs-backend
+          echo "${{ secrets.ENV_FILE }}" > .env
           npm ci
           npm test -- --coverage
       - run: |
