@@ -32,6 +32,7 @@
   font-family: 'Proxima nova', sans-serif;
   color: #fff;
   border-color: #ffffff;
+  text-align: center;
 }
 
 .tbody{
@@ -56,6 +57,7 @@
   background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);
   color: #FFFFFF;
   margin-top: 30px;
+  margin-left: 5px;
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;

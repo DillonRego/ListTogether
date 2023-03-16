@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Container, Row, Col, Image, Table, Button } from 'react-bootstrap';
-import ExclamationMark from '../Icons/exclamation.js';
-//import Userfront from "@userfront/react";
-import './Library.css'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { Container, Row, Col, Image, Table, Button } from "react-bootstrap";
+import ExclamationMark from "../Icons/exclamation.js";
+import Userfront from "@userfront/react";
+import "./Library.css"
 
 function Library() {
   const [libraryData, setLibraryData] = useState(null);
@@ -12,10 +12,11 @@ function Library() {
   const { id } = useParams();
   const history = useNavigate();
   const port = 5000;
+  const userData = Userfront.user;
   const shareURL = window.location.href;
 
   useEffect(() => {
-    axios.get('http://localhost:' + port + '/images')
+    axios.get("http://localhost:" + port + "/images")
       .then(res => {
         setImages(res.data);
       })
@@ -34,7 +35,7 @@ function Library() {
 
   async function fetchLibraryData(_id) {
     try {
-      const response = await axios.get(`http://localhost:` + port + `/lists/${_id}`);
+      const response = await axios.get("http://localhost:" + port + `/lists/${_id}`);
       console.log(response.data.tasks_list)
       return response.data.tasks_list;
     } catch (error) {
@@ -45,7 +46,7 @@ function Library() {
 
   async function deleteLibrary(_id) {
     try {
-      const response = await axios.delete(`http://localhost:` + port + `/lists/${_id}`);
+      const response = await axios.delete("http://localhost:" + port + `/lists/${_id}`);
       if (response.status === 204) {
         handleBack();
       }
@@ -66,14 +67,14 @@ function Library() {
   }
 
   function handleBack() {
-    history('/dashboard');
+    history("/dashboard");
   }
 
   function handleStatusChange(index) {
     let newStatus = [...libraryData.status];
     newStatus[index] = newStatus[index] === "0" ? "1" : "0";
     setLibraryData({...libraryData, status: newStatus});
-    axios.post(`http://localhost:` + port + `/lists/${id}/`, {status: newStatus})
+    axios.post("http://localhost:" + port + `/lists/${id}/`, {status: newStatus})
       .then(res => {
         console.log(res);
       })
@@ -103,32 +104,32 @@ function Library() {
       </Row>
       <Row>
         <Col md={6}>
-          <Image className='img-fluid'
+          <Image className="img-fluid"
             src={`data:${getImage(libraryData.image).contentType};base64,${getImage(libraryData.image).data}`} alt={libraryData.title} fluid />
         </Col>
         <Col md={6}>
-          <h2 className='library-title'>{libraryData.title}</h2>
-          <h3 className='username-title'>username</h3>
+          <h2 className="library-title">{libraryData.title}</h2>
+          <h3 className="username-title">{userData.username}</h3>
         </Col>
       </Row>
       <Row>
         <Col>
           <Table>
             <thead>
-              <tr className='thead'>
+              <tr className="thead">
                 <th>#</th>
                 <th>Item</th>
-                <th></th>
-                <th></th>
+                <th>Priority</th>
+                <th>Done</th>
               </tr>
             </thead>
             <tbody >
               {libraryData.items.map((item, i) => (
-                <tr key={i} className='tbody'>
-                  <td>{i + 1}</td>
-                  <td>{item}</td>
-                  <td><ExclamationMark className={"exclamation-mark-" + libraryData.priority[i]}/></td>
-                  <td class = "checkbox-rect">
+                <tr key={i} className="tbody">
+                  <td style={{textAlign: "center"}}>{i + 1}</td>
+                  <td style={{textAlign: "center"}} >{item}</td>
+                  <td style={{textAlign: "center"}}><ExclamationMark className={"exclamation-mark-" + libraryData.priority[i]}/></td>
+                  <td className="checkbox-rect">
                     <input id={libraryData.status[i] + "_checkbox"}  type="checkbox" checked={libraryData.status[i] === "1" }  onClick = {() => handleStatusChange(i)}/>
                   </td>
                 </tr>

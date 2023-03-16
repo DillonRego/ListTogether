@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import {Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
+  const history = useNavigate();
   const port = 5000;
 
   const handleImageChange = (event) => {
@@ -11,22 +14,23 @@ const ImageUpload = () => {
 
   const handleImageUpload = async () => {
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
 
     try {
-      const response = await axios.post('http://localhost:' + port + '/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
+      const response = await axios.post("http://localhost:" + port + "/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
       });
       console.log(response.data);
+      history("/gallery");
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleImageChange} />
-      <button onClick={handleImageUpload}>Upload Image</button>
+    <div className="image-upload">
+      <input className="file-upload" type="file" onChange={handleImageChange} />
+      <Button variant = "primary" onClick={handleImageUpload}>Upload Image</Button>
     </div>
   );
 };
