@@ -1096,3 +1096,26 @@ caption {
   border-radius: 50%;
   box-shadow: none;
 }
+
+/* checkbox-rect */
+.checkbox-rect input[type="checkbox"] {
+  display: block;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 0.2em;
+  left: 0;
+  top: 0;
+  -webkit-transition: all 0.2s, background 0.2s ease-in-out;
+  transition: all 0.2s, background 0.2s ease-in-out;
+  background: #f3f3f3;
+}
+.checkbox-rect input[type="checkbox"]:checked {
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 0.2em;
+  border: 2px solid #fff;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(360deg);
+  background: #50565a;
+  box-shadow: 0 0 0 1px #000;
+}

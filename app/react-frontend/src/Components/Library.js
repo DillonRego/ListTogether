@@ -12,7 +12,7 @@ function Library() {
   const { id } = useParams();
   const history = useNavigate();
   const userData = Userfront.user;
-  const port = 5001;
+  const port = 5000;
 
   useEffect(() => {
     axios.get('http://localhost:' + port + '/images')
@@ -56,6 +56,20 @@ function Library() {
     history('/dashboard');
   }
 
+  // create a handler that, when the status checkbox is clicked, updates the status in the database by initiating a post request
+  function handleStatusChange(index) {
+    let newStatus = [...libraryData.status];
+    newStatus[index] = newStatus[index] === "0" ? "1" : "0";
+    setLibraryData({...libraryData, status: newStatus});
+    axios.post(`http://localhost:` + port + `/lists/${id}/`, {status: newStatus})
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   if (!libraryData) {
     return <div>Loading...</div>;
   }
@@ -94,7 +108,9 @@ function Library() {
                   <td>{i + 1}</td>
                   <td>{item}</td>
                   <td><ExclamationMark className={"exclamation-mark-" + libraryData.priority[i]}/></td>
-                  <td><input id={libraryData.status[i] + "_checkbox"} type="checkbox" checked={libraryData.status[i] === "1"} /></td>
+                  <td class = "checkbox-rect">
+                    <input id={libraryData.status[i] + "_checkbox"}  type="checkbox" checked={libraryData.status[i] === "1" }  onClick = {() => handleStatusChange(i)}/>
+                  </td>
                 </tr>
               ))}
             </tbody>

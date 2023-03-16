@@ -13,7 +13,7 @@ function DataEntry(props) {
     priority: [''],
     image: ''
   });
-  const port = 5001;
+  const port = 5000;
 
   useEffect(() => {
     axios.get('http://localhost:' + port + '/images')
@@ -52,7 +52,6 @@ function DataEntry(props) {
   };
 
   const handlePriorityChange = (index, event) => {
-    // setFormData({...formData, priority: e.target.value});
     const newPriorities = [...formData.priority];
     newPriorities[index] = event.target.value;
     setFormData({ ...formData, priority: newPriorities });
@@ -60,7 +59,6 @@ function DataEntry(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     props.handleSubmit(formData);
     setFormData({ title: '', items: [''], image: '', status: [''], priority: ['']});
   }

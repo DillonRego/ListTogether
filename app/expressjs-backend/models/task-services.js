@@ -32,7 +32,6 @@ mongoose
 
 async function findListById(id) {
   try {
-    console.log(id);
     return await listModel.findById(id);
   } catch (error) {
     console.log("findListById error");
@@ -52,6 +51,12 @@ async function addList(list) {
   }
 }
 
+async function updateList(id, list) {
+  return await listModel.findByIdAndUpdate(id, list, { new: true });
+}
+
+
+
 async function deleteList(id) {
   return await listModel.findByIdAndDelete(id);
 }
@@ -60,3 +65,4 @@ exports.getLists = getLists;
 exports.findListById = findListById;
 exports.addList = addList;
 exports.deleteList = deleteList;
+exports.updateList = updateList;
