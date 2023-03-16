@@ -9,7 +9,7 @@ README.md
 
 /app/src/node_modules
 # testing
-/app/coverage
+/coverage
 
 # production
 /app/build
