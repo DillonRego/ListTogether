@@ -1,6 +1,0 @@
-{
-  "workspaces": [
-    "app\\expressjs-backend",
-    "app\\react-frontend"
-  ]
-}
