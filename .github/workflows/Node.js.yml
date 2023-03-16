@@ -20,7 +20,7 @@ jobs:
       - run: ../cd react-frontend
       - run: npm ci
 
-  start BE:
+  startf:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +31,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm run dev
 
-   start FE:
+   startb:
     needs: build
     runs-on: ubuntu-latest
     steps:
