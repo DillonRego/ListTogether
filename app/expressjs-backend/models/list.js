@@ -22,7 +22,23 @@ const ListSchema = new mongoose.Schema({
   userUuid: {
     type: String,
     required: true
-  }
+  },
+  priority: {
+    type: [String],
+    required: true,
+    trim: true,
+    validate(value) {
+      if (value.length < 1) throw new Error("Invalid Task.");
+    }
+  },
+  status: {
+    type: [String],
+    required: true,
+    trim: true,
+    validate(value) {
+      if (value.length < 1) throw new Error("Invalid Task.");
+    }
+  },
 }, {collection : 'tasks_list'});
 
 const List = mongoose.model("List", ListSchema);

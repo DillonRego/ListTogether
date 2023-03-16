@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const listServices = require("./models/task-services");
 
 const app = express();
-const port = 5000;
+const port = 5001;
 
 app.use(cors());
 app.use(express.json());
@@ -29,8 +29,11 @@ app.get('/lists', async (req, res) => {
 });
 
 app.get('/lists/:id', async (req, res) => {
+    console.log(req.params);
     const id = req.params['id']; //or req.params.id
+    console.log("id in the request" + id);
     let result = await listServices.findListById(id);
+    console.log(result);
     if (result === undefined || result === null)
         res.status(404).send('Resource not found.');
     else

@@ -32,8 +32,10 @@ mongoose
 
 async function findListById(id) {
   try {
+    console.log(id);
     return await listModel.findById(id);
   } catch (error) {
+    console.log("findListById error");
     console.log(error);
     return undefined;
   }

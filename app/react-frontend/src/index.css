@@ -1047,3 +1047,52 @@ caption {
   color: rgb(200, 178, 178);
   box-shadow: none;
 }
+
+.exclamation-mark-high {
+  max-width: 20px;
+  max-height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: red;
+  clip: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  border-radius: 50%;
+  box-shadow: none;
+}
+.exclamation-mark-medium {
+  max-width: 20px;
+  max-height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: yellow;
+  clip: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  border-radius: 50%;
+  box-shadow: none;
+}
+.exclamation-mark-low {
+  max-width: 20px;
+  max-height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: green;
+  clip: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  border-radius: 50%;
+  box-shadow: none;
+}
