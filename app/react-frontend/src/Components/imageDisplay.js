@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ImageDisplay = () => {
   const [images, setImages] = useState([]);
-  const port = 5001;
+  const port = 5000;
 
   useEffect(() => {
     axios.get('http://localhost:' + port + '/images')
