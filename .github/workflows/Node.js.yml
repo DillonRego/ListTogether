@@ -7,7 +7,7 @@ on:
     branches: [ main, CI ]
 
 jobs:
-  build BE:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,9 +17,11 @@ jobs:
       - run: cd app/expressjs-backend
       - run: npm ci
       - run: npm test
+      - run: ../cd react-frontend
+      - run: npm ci
 
-  run BE:
-    needs: build BE
+  start BE:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -29,18 +31,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm run dev
 
-    build FE:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: ../cd react-frontend
-      - run: npm ci
-
-   run FE:
-    needs: build FE
+   start FE:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
