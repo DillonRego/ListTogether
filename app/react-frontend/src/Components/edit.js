@@ -23,7 +23,7 @@ function Edit(props) {
 
     async function fetchLibraryData(_id) {
         try {
-            const response = await axios.get('https://listtogether.azurewebsites.net' + `/lists/${_id}`);
+            const response = await axios.get(`https://listtogether.azurewebsites.net/lists/${_id}`);
             //console.log(response.data.tasks_list)
             return response.data.tasks_list;
         } catch (error) {
@@ -33,7 +33,7 @@ function Edit(props) {
     }
 
     useEffect(() => {
-        axios.get('https://listtogether.azurewebsites.net' + '/images')
+        axios.get('https://listtogether.azurewebsites.net/images')
         .then(res => {
             setImages(res.data);
         })
