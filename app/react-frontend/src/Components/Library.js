@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Image, Table, Button } from "react-bootstrap";
 import ExclamationMark from "../Icons/exclamation.js";
 import Userfront from "@userfront/react";
@@ -98,7 +98,7 @@ function Library() {
           <Button variant="primary" onClick={handleBack}>Back</Button>
         </Col>
         <Col>
-          <Button className="float-end" variant="primary">Edit</Button>
+          <Link to={`/edit/${id}`} className="btn btn-primary float-end ms-2">Edit</Link>
           <Button className="float-end ms-2" variant="danger" onClick={handleDelete}>Delete</Button>
         </Col>
       </Row>
