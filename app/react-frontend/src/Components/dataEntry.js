@@ -13,10 +13,10 @@ function DataEntry(props) {
     priority: [''],
     image: ''
   });
-  const port = 5000;
+  //const port = 5000;
 
   useEffect(() => {
-    axios.get('http://localhost:' + port + '/images')
+    axios.get('https://listtogether.azurewebsites.net' + '/images')
       .then(res => {
         setImages(res.data);
       })

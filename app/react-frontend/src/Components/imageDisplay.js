@@ -3,10 +3,10 @@ import axios from "axios";
 
 const ImageDisplay = () => {
   const [images, setImages] = useState([]);
-  const port = 5000;
+  //const port = 5000;
 
   useEffect(() => {
-    axios.get("http://localhost:" + port + "/images")
+    axios.get('https://listtogether.azurewebsites.net' + "/images")
       .then(res => {
         setImages(res.data);
       })
@@ -16,7 +16,7 @@ const ImageDisplay = () => {
   }, []);
 
   function deleteImage(id) {
-    axios.delete("http://localhost:" + port + "/images/" + id);
+    axios.delete('https://listtogether.azurewebsites.net' + "/images/" + id);
     window.location.reload(true);
   }
 
