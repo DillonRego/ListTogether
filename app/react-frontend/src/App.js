@@ -8,6 +8,7 @@ import Profile from "./Components/Profile";
 import NewForm from './Components/newForm';
 import ImageUpload from './Components/imageUpload';
 import ImageDisplay from './Components/imageDisplay';
+import EditForm from './Components/editForm';
 import './App.css'
 
 const SignupForm = Userfront.build({
@@ -36,6 +37,7 @@ function App() {
             <Route path="/upload" element={<RequireAuth><ImageUpload /></RequireAuth>} />
             <Route path="/gallery" element={<RequireAuth><ImageDisplay /></RequireAuth>} />
             <Route path="/lists/:id" element={<RequireAuth><Library /></RequireAuth>} />
+            <Route path="/edit/:id" element={<RequireAuth><EditForm /></RequireAuth>} />
           </Routes>
         </div>
       </BrowserRouter>
