@@ -50,3 +50,7 @@ Update the fields below with your mongoDB atlas info
 - `MONGO_DB=replace_with_your_mongodb_db`
 - `MONGO_CLUSTER=replace_with_your_mongodb_atlas_cluster`
 - `PORT=5000`
+
+# CI/CD through github actions
+- `Frontend URL: https://gray-rock-0003e6e1e.2.azurestaticapps.net/`
+- 'Backend URL: https://listtogether.azurewebsites.net/`

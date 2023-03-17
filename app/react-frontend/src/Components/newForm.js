@@ -20,7 +20,7 @@ function NewForm() {
   async function fetchAll() {
     const user = Userfront.user;
     try {
-      const response = await axios.get('https://listtogether.azurewebsites.net' + '/lists', {
+      const response = await axios.get('https://listtogether.azurewebsites.net/lists', {
         params: {
           userUuid: user.userUuid,
         },
@@ -39,7 +39,7 @@ function NewForm() {
       userUuid: user.userUuid, // include the user's UUID in the Library
     };
     try {
-      const response = await axios.post('https://listtogether.azurewebsites.net' + '/lists', library);
+      const response = await axios.post('https://listtogether.azurewebsites.net/lists', library);
       return response;
     } catch (error) {
       console.log(error);
