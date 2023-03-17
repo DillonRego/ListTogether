@@ -24,7 +24,7 @@ function Edit(props) {
     async function fetchLibraryData(_id) {
         try {
             const response = await axios.get("http://localhost:" + port + `/lists/${_id}`);
-            console.log(response.data.tasks_list)
+            //console.log(response.data.tasks_list)
             return response.data.tasks_list;
         } catch (error) {
             console.log(error);
@@ -159,7 +159,7 @@ function Edit(props) {
             <Button className="primaryBtn" variant="primary" type="button" onClick={handleAddItem}>Add Item</Button>
             <Button className="primaryBtn" variant="primary" type="submit">Submit</Button>
           </Form>
-          </div> : <Button className="primaryBtn" variant="primary" type="button" onClick={convertForm}>Start editing/reset</Button>}
+          </div> : <Button className="primaryBtn" variant="primary" type="button" onClick={convertForm}>Start editing</Button>}
         </div>
       );    
 
