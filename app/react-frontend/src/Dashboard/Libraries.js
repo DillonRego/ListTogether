@@ -5,7 +5,7 @@ import Userfront from '@userfront/react';
 
 function Libraries(props) {
   const [libraryData, setLibraryData] = useState([]);
-  //const port = 5000;
+  const port = 5000;
 
   useEffect(() => {
     fetchAll().then(result => {
@@ -18,7 +18,7 @@ function Libraries(props) {
   async function fetchAll() {
     const user = Userfront.user;
     try {
-      const response = await axios.get('https://listtogether.azurewebsites.net/lists', {
+      const response = await axios.get('https://listtogether.azurewebsites.net' + '/lists', {
         params: {
           userUuid: user.userUuid,
         },

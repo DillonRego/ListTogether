@@ -6,7 +6,7 @@ const ImageDisplay = () => {
   //const port = 5000;
 
   useEffect(() => {
-    axios.get('https://listtogether.azurewebsites.net/images')
+    axios.get('https://listtogether.azurewebsites.net' + "/images")
       .then(res => {
         setImages(res.data);
       })
@@ -16,7 +16,7 @@ const ImageDisplay = () => {
   }, []);
 
   function deleteImage(id) {
-    axios.delete('https://listtogether.azurewebsites.net/images/' + id);
+    axios.delete('https://listtogether.azurewebsites.net' + "/images/" + id);
     window.location.reload(true);
   }
 
