@@ -11,12 +11,12 @@ function Library() {
   const [images, setImages] = useState([]);
   const { id } = useParams();
   const history = useNavigate();
-  //const port = 5000;
+  const port = 5000;
   const userData = Userfront.user;
   const shareURL = window.location.href;
 
   useEffect(() => {
-    axios.get('https://listtogether.azurewebsites.net' + '/images')
+    axios.get("http://localhost:" + port + "/images")
       .then(res => {
         setImages(res.data);
       })
@@ -35,7 +35,7 @@ function Library() {
 
   async function fetchLibraryData(_id) {
     try {
-      const response = await axios.get('https://listtogether.azurewebsites.net' + `/lists/${_id}`);
+      const response = await axios.get("http://localhost:" + port + `/lists/${_id}`);
       console.log(response.data.tasks_list)
       return response.data.tasks_list;
     } catch (error) {
@@ -46,7 +46,7 @@ function Library() {
 
   async function deleteLibrary(_id) {
     try {
-      const response = await axios.delete('https://listtogether.azurewebsites.net' + `/lists/${_id}`);
+      const response = await axios.delete("http://localhost:" + port + `/lists/${_id}`);
       if (response.status === 204) {
         handleBack();
       }
@@ -74,7 +74,7 @@ function Library() {
     let newStatus = [...libraryData.status];
     newStatus[index] = newStatus[index] === "0" ? "1" : "0";
     setLibraryData({...libraryData, status: newStatus});
-    axios.post('https://listtogether.azurewebsites.net' + `/lists/${id}/`, {status: newStatus})
+    axios.post("http://localhost:" + port + `/lists/${id}/`, {status: newStatus})
       .then(res => {
         console.log(res);
       })

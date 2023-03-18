@@ -19,11 +19,11 @@ function Edit(props) {
     const [libraryData, setLibraryData] = useState(null);
     //const id = '6412b23ad30c34f9793474ee'
 
-    //const port = 5000;
+    const port = 5000;
 
     async function fetchLibraryData(_id) {
         try {
-            const response = await axios.get('https://listtogether.azurewebsites.net' + `/lists/${_id}`);
+            const response = await axios.get("http://localhost:" + port + `/lists/${_id}`);
             //console.log(response.data.tasks_list)
             return response.data.tasks_list;
         } catch (error) {
@@ -33,7 +33,7 @@ function Edit(props) {
     }
 
     useEffect(() => {
-        axios.get('https://listtogether.azurewebsites.net' + '/images')
+        axios.get('http://localhost:' + port + '/images')
         .then(res => {
             setImages(res.data);
         })

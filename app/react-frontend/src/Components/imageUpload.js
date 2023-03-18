@@ -6,7 +6,7 @@ import axios from "axios";
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
   const history = useNavigate();
-  //const port = 5000;
+  const port = 5000;
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
@@ -17,7 +17,7 @@ const ImageUpload = () => {
     formData.append("image", image);
 
     try {
-      const response = await axios.post('https://listtogether.azurewebsites.net' + "/upload", formData, {
+      const response = await axios.post("http://localhost:" + port + "/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       console.log(response.data);

@@ -18,7 +18,7 @@ function Libraries(props) {
   async function fetchAll() {
     const user = Userfront.user;
     try {
-      const response = await axios.get('https://listtogether.azurewebsites.net' + '/lists', {
+      const response = await axios.get('http://localhost:' + port + '/lists', {
         params: {
           userUuid: user.userUuid,
         },
