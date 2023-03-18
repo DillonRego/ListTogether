@@ -40,14 +40,21 @@ function EditForm() {
     };
     try {
       const response = await axios.post('http://localhost:' + port + '/lists', library);
-      try{
-        await axios.delete("http://localhost:" + port + `/lists/${id}`);
-      }
-      catch (error) {
-        console.log(error);
-      }
       return response;
     } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  async function deleteLibrary(id) {
+    try {
+      const response = await axios.delete("http://localhost:" + port + `/lists/${id}`);
+      if (response.status === 204) {
+        return true;
+      }
+    }
+    catch (error) {
       console.log(error);
       return false;
     }
@@ -56,9 +63,11 @@ function EditForm() {
   function updateLibrary(item) {
     makePostCall(item).then(result => {
       if (result && result.status === 201) {
+        deleteLibrary(id);
         setLibrary([...library, result.data]);
       }
     });
+    deleteLibrary(id);
     window.location.href = '/dashboard';
   }
 
