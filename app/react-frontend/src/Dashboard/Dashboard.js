@@ -9,7 +9,7 @@ function TableBody(props) {
   //const port = 5000;
 
   useEffect(() => {
-    axios.get('https://listtogether.azurewebsites.net/images')
+    axios.get('https://listtogether.azurewebsites.net' + '/images')
       .then(res => {
         setImages(res.data);
       })
